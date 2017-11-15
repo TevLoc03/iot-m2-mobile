@@ -13,22 +13,19 @@
       <ion-row>
         <ion-col col-9>
           <ion-card>
-            <img src="../assets/imgs/dscn1861.jpg"/>
-            <div class="card-title">Plats</div>
+            <div class="card-title" (click)="plat()">Plats</div>
             <div class="card-subtitle">Choissisez parmis une multitudes de plats</div>
           </ion-card>
         </ion-col>
         <ion-col col-3>
-          <ion-card>
+          <ion-card >
               <ion-card-header>
                 Première commande ?
               </ion-card-header>
               <ion-card-content>
                 <!-- Add card content here! -->
                 <p>Vous n'avez jamais commander avec nos bornes de commandes ?<br> Je vous invites alors à passer par ici !</p>
-                <button ion-button color="danger">
-                  C'est parti !
-                </button>
+                <button ion-button color="danger" (click)="inscription()"> C'est parti !</button>
               </ion-card-content>
             
             </ion-card>
@@ -36,8 +33,7 @@
       </ion-row>
       <ion-row>
         <ion-col col-9>
-          <ion-card>
-            <img src="../assets/imgs/dscn1861.jpg"/>
+          <ion-card (click)="boisson()">
             <div class="card-title">Boissons</div>
             <div class="card-subtitle">Pour étancher votre soif</div>
           </ion-card>

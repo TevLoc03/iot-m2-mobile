@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { InscriptionPage } from '../inscription/inscription';
+import { PlatPage } from '../plat/plat';
+import { BoissonPage } from '../boisson/boisson';
 
 @Component({
   selector: 'page-commande',
@@ -11,4 +14,13 @@ export class CommandePage {
 
   }
 
+  inscription() {
+    this.navCtrl.push(InscriptionPage);
+  }
+  plat() {
+    this.navCtrl.push(PlatPage);
+  }
+  boisson() {
+    this.navCtrl.push(BoissonPage);
+  }
 }

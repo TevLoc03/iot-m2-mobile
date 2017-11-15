@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 import { CommandePage } from '../pages/commande/commande';
+import { InscriptionPage } from '../pages/inscription/inscription';
+import { PlatPage } from '../pages/plat/plat';
+import { BoissonPage } from '../pages/boisson/boisson';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +20,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
 
-    CommandePage
+    CommandePage,
+    InscriptionPage,
+    PlatPage,
+    BoissonPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
 
-    CommandePage
+    CommandePage,
+    InscriptionPage,
+    PlatPage,
+    BoissonPage
   ],
   providers: [
     StatusBar,
