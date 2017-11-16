@@ -1,5 +1,18 @@
 page-plat {
-    button {
-        background: white;
+    .plat-col:nth-child(even) {
+        button, .card-md {
+            box-shadow: none;
+            background: #e8b182;
+        }
+        strong {
+            color: #ee2e24;
+        }
     }
+    .plat-col:nth-child(odd) {
+        button, .card-md {
+            box-shadow: none;
+            background: #6e3c31;
+        }
+    }
+
 }
