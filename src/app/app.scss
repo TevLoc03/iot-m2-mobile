@@ -14,33 +14,30 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@font-face {
+	font-family: "BlockBert";
+	src: url('../assets/font/Block-Berthold.ttf.ttf');
+}
+ion-app.md {
+    font-family: "BlockBert" ,Arial,sans-serif !important;
+}
 .toolbar-background-md {
-    background: #55b8b3;
+    background-color: #f07d00;
 }
 .toolbar-title-md {
-    color: white;
+    color: #6e3c31;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
     color: white;
-}
-
-ion-card {
-    position: relative;
-    text-align: center;
-    height: 300px;
-}
-
-.card-title {
-    position: absolute;
-    top: 36%;
-    font-size: 2.0em;
-    width: 100%;
     font-weight: bold;
 }
-
-.card-subtitle {
-    font-size: 1.0em;
-    position: absolute;
-    top: 52%;
-    width: 100%;
+.card-title-md {
+    color: #6e3c31;
+    font-size: 30px;
+    font-weight: bold;
+}
+strong {
+    color: #f7a600;
 }
