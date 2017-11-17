@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import {ApiServiceProvider} from '../../providers/api-service/api-service';
+import 'rxjs/add/operator/share';
 
 @Component({
   selector: 'page-plat',
@@ -9,17 +11,30 @@ import {ApiServiceProvider} from '../../providers/api-service/api-service';
   providers: [ApiServiceProvider]
 })
 export class PlatPage {
-  public plat: any;
+  public plats: any[];
 
-  constructor(public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController) {
-    this.loadData();
+  constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController) {
+
   }
-
-  loadData(){
-    this.apiService.load()
-    .then(data => {
-      this.plat = data;
-    });
+  
+  ionViewDidEnter(){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    // Utilisation des headers
+    
+    let seq = this.apiService.get('posts', null, options).share();
+    
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+          // Retour JSON/XML de l'API
+          this.plats = res;
+          console.log(res);
+        }, err => {
+          console.error('ERROR', err);
+        });
+    return seq;
   }
 
   ajoutPlat() {
