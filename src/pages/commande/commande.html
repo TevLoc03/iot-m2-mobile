@@ -12,19 +12,23 @@
     <ion-grid>
       <ion-row>
         <ion-col col-9>
-          <ion-card>
-            <div class="card-title" (click)="plat()">Plats</div>
-            <div class="card-subtitle">Choissisez parmis une multitudes de plats</div>
-          </ion-card>
+          <button class="choix" (click)="plat()">
+              <ion-card>
+                  <div class="card-title">Plats</div>
+                  <div class="card-subtitle">Choissisez parmis une multitudes de plats</div>
+                </ion-card>
+          </button>
         </ion-col>
         <ion-col col-3>
           <ion-card >
               <ion-card-header>
-                Première commande ?
+                <b>Première commande ?</b>
               </ion-card-header>
+              <br>
               <ion-card-content>
-                <!-- Add card content here! -->
                 <p>Vous n'avez jamais commander avec nos bornes de commandes ?<br> Je vous invites alors à passer par ici !</p>
+                <br>
+                <br>
                 <button ion-button color="danger" (click)="inscription()"> C'est parti !</button>
               </ion-card-content>
             
@@ -33,11 +37,34 @@
       </ion-row>
       <ion-row>
         <ion-col col-9>
-          <ion-card (click)="boisson()">
-            <div class="card-title">Boissons</div>
-            <div class="card-subtitle">Pour étancher votre soif</div>
-          </ion-card>
+            <button class="choix" (click)="boisson()">
+              <ion-card>
+                <div class="card-title">Boissons</div>
+                <div class="card-subtitle">Pour étancher votre soif</div>
+              </ion-card>
+            </button>
         </ion-col>
+        <ion-col col-3>
+            <ion-card >
+                <ion-card-header>
+                  <b>Panier</b>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-scroll scrollY="true">
+                            <ion-item *ngFor="let produit of produits">
+                                <ion-avatar item-start>
+                                  <img src="../../assets/imgs/coca.png"/>
+                                </ion-avatar>
+                                <h2>{{produit.title}} 9.80€</h2>
+                                <ion-note item-end><ion-icon name="close"></ion-icon></ion-note>
+                            </ion-item>
+                        </ion-scroll>
+                </ion-list>
+                </ion-card-content>
+                <button ion-button color="warning" (click)="commander()"> Valider ma commande</button>
+              </ion-card>
+          </ion-col>
       </ion-row>
     </ion-grid>
   </ion-content>

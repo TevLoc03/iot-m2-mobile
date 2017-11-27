@@ -1,5 +1,17 @@
 page-boisson {
-    button {
-        background: white;
+    .boisson-col:nth-child(even) {
+        button, .card-md {
+            box-shadow: none;
+            background: #93c0e9;
+        }
+        strong {
+            color: #f7a600;
+        }
+    }
+    .boisson-col:nth-child(odd) {
+        button, .card-md {
+            box-shadow: none;
+            background: #0171ce;
+        }
     }
 }
