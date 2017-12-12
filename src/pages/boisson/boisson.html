@@ -1,8 +1,40 @@
 <ion-header>
-        <ion-navbar>
-          <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title>Nos Boissons</ion-title>
-        </ion-navbar>
-      </ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Nos Boissons</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+        <!--<ion-list>
+                <ion-item *ngFor="let plat of plats">
+                  {{plat.title}}
+                </ion-item>
+        </ion-list>-->
+
+        <ion-grid>
+            <ion-row>
+                <ion-col *ngFor="let boisson of boissons" class="boisson-col" col-4>
+                    <button (click)="ajoutBoisson()">
+                        <ion-card>
+                            <img src="../../assets/imgs/coca.png"/>
+                            <ion-card-content padding>
+                                <ion-card-title>{{boisson.title}} <strong>9.80 €</strong></ion-card-title>
+                            </ion-card-content>
+                        </ion-card>
+                    </button>
+                </ion-col>
+                <!--<ion-col class="plat-col" col-4>
+                    <button (click)="ajoutPlat()">
+                            <ion-card>
+                                <img src="../../assets/imgs/wooper.png"/>
+                                <ion-card-content padding>
+                                    <ion-card-title>DOUBLE WHOPPER® CHEESE <strong>9.80 €</strong></ion-card-title>
+                                </ion-card-content>
+                            </ion-card>
+                        </button>
+                    </ion-col>-->
+                </ion-row>
+        </ion-grid>
+  </ion-content>
