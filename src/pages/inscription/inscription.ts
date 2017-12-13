@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CommandePage } from '../commande/commande';
 import { AlertController } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-inscription',
@@ -10,10 +10,14 @@ import { AlertController } from 'ionic-angular';
 })
 export class InscriptionPage {
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
     
   }
-  valider() {
+
+  insc = {}
+  inscForm() {
+    this.storage.set('clients', this.insc);
+
     this.navCtrl.push(CommandePage);
       let alert = this.alertCtrl.create({
         title: 'Inscription validé !',

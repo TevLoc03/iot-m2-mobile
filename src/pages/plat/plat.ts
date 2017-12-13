@@ -4,6 +4,8 @@ import { AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {ApiServiceProvider} from '../../providers/api-service/api-service';
 import 'rxjs/add/operator/share';
+import { Storage } from '@ionic/storage';
+import { CommandePage } from '../commande/commande';
 
 @Component({
   selector: 'page-plat',
@@ -12,9 +14,10 @@ import 'rxjs/add/operator/share';
 })
 export class PlatPage {
   public plats: any[];
+  produits: any[];
 
-  constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController) {
-
+  constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
+  
   }
   
   ionViewDidEnter(){
@@ -37,13 +40,39 @@ export class PlatPage {
     return seq;
   }
 
-  ajoutPlat() {
+
+  ajoutPlat(title) {
+
+    this.storage.get('panier').then((data) => {
+      this.produits = data;
+      console.log(data);
+    });
+
+    this.storage.get('panier').then((data) => {
+      if(data != null){
+        data.push({
+          title: title
+        });
+        this.storage.set('panier', data);
+      }
+      else {
+        let array = [];
+        array.push({
+          title: title
+        });
+        this.storage.set('panier', array);
+      }
+    });
+
     let alert = this.alertCtrl.create({
       title: 'Plat ajouté',
       subTitle: 'Continuer votre commande',
       buttons: [
         {
-          text: 'Oui'
+          text: 'Oui',
+          handler: () => {
+            this.navCtrl.push(CommandePage);
+          }
         },
         {
           text: 'Revenir accueil'

@@ -9,27 +9,29 @@
   
   <ion-content padding>
 
-<ion-list col-md-8 >
-    
-      <ion-item>
-        <ion-label>Nom</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-            <ion-label>Email</ion-label>
-            <ion-input type="email"></ion-input>
-         </ion-item>
+    <form (ngSubmit)="inscForm()">
 
-      <ion-item>
-        <ion-label>Mot de passe</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
-    
-    </ion-list>
-    
-    <div padding>
-      <button ion-button color="warning" >Inscription</button>
-    </div>
+      <ion-list col-md-8 >
+        <ion-item>
+          <ion-label>Nom</ion-label>
+          <ion-input [(ngModel)]="insc.nom" name="nom" type="text"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input [(ngModel)]="insc.email" name="email" type="email"></ion-input>
+          </ion-item>
+
+        <ion-item>
+          <ion-label>Mot de passe</ion-label>
+          <ion-input [(ngModel)]="insc.password" name="password" type="password"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div padding>
+        <button ion-button color="warning" type="submit" >Inscription</button>
+      </div>
+
+    </form>
 
 </ion-content>

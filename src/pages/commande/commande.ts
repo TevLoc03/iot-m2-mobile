@@ -7,6 +7,8 @@ import 'rxjs/add/operator/share';
 import { InscriptionPage } from '../inscription/inscription';
 import { PlatPage } from '../plat/plat';
 import { BoissonPage } from '../boisson/boisson';
+import { PaiementPage } from '../paiement/paiement';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-commande',
@@ -14,30 +16,26 @@ import { BoissonPage } from '../boisson/boisson';
 })
 export class CommandePage {
 
-  public produits: any[];
+  public panier: any[];
+  public clients: any[];
+  public 
   
-    constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController) {
+    constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
   
     }
     
     ionViewDidEnter(){
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      // Utilisation des headers
-      
-      let seq = this.apiService.get('posts', null, options).share();
-      
-      seq
-        .map(res => res.json())
-        .subscribe(res => {
-            // Retour JSON/XML de l'API
-            this.produits = res;
-            console.log(res);
-          }, err => {
-            console.error('ERROR', err);
-          });
-      return seq;
+
+      this.storage.get('clients').then((val) => {
+        console.log('clients', val);
+        this.clients = val;
+      });
+
+      this.storage.get('panier').then((val) => {
+        console.log('panier', val);
+        this.panier = val;
+      });
+
     }
 
   inscription() {
@@ -48,5 +46,8 @@ export class CommandePage {
   }
   boisson() {
     this.navCtrl.push(BoissonPage);
+  }
+  commander() {
+    this.navCtrl.push(PaiementPage);
   }
 }

@@ -9,6 +9,7 @@ import { CommandePage } from '../pages/commande/commande';
 import { InscriptionPage } from '../pages/inscription/inscription';
 import { PlatPage } from '../pages/plat/plat';
 import { BoissonPage } from '../pages/boisson/boisson';
+import { PaiementPage } from '../pages/paiement/paiement';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,6 +32,7 @@ export class MyApp {
       { title: 'Inscription', component: InscriptionPage },
       { title: 'Plat', component: PlatPage },
       { title: 'Boisson', component: BoissonPage },
+      { title: 'Paiement', component: PaiementPage },
     ];
 
   }

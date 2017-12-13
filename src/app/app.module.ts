@@ -9,11 +9,13 @@ import { CommandePage } from '../pages/commande/commande';
 import { InscriptionPage } from '../pages/inscription/inscription';
 import { PlatPage } from '../pages/plat/plat';
 import { BoissonPage } from '../pages/boisson/boisson';
+import { PaiementPage } from '../pages/paiement/paiement';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiServiceProvider } from '../providers/api-service/api-service';
 import { HttpModule } from '@angular/http'; 
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,13 @@ import { HttpModule } from '@angular/http';
     CommandePage,
     InscriptionPage,
     PlatPage,
-    BoissonPage
+    BoissonPage,
+    PaiementPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -38,7 +42,8 @@ import { HttpModule } from '@angular/http';
     CommandePage,
     InscriptionPage,
     PlatPage,
-    BoissonPage
+    BoissonPage,
+    PaiementPage
   ],
   providers: [
     StatusBar,

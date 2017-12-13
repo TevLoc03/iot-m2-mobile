@@ -8,7 +8,7 @@
   </ion-header>
   
   <ion-content padding>
-    <h3>Bienvenue</h3>
+    <h3>Bienvennue</h3>
     <ion-grid>
       <ion-row>
         <ion-col col-9>
@@ -21,7 +21,7 @@
         </ion-col>
         <ion-col col-3>
           
-          <ion-card >
+          <ion-card *ngIf="clients == null">
               <ion-card-header>
                 <b>Première commande ?</b>
               </ion-card-header>
@@ -32,8 +32,21 @@
                 <br>
                 <button ion-button color="danger" (click)="inscription()"> C'est parti !</button>
               </ion-card-content>
-            
             </ion-card>
+
+            <ion-card *ngIf="clients != null">
+                <ion-card-header>
+                  <b>Bonjour</b>
+                </ion-card-header>
+                <br>
+                <ion-card-content>
+                  <h3 style="font-size:2em !important;">{{ clients.nom }}</h3>
+                  <h4 style="font-size:2em !important;">{{ clients.email }}</h4>
+                  <br>
+                  <br>
+                </ion-card-content>
+              </ion-card>
+
         </ion-col>
       </ion-row>
       <ion-row>
@@ -52,8 +65,8 @@
                 </ion-card-header>
                 <ion-card-content>
                     <ion-list>
-                        <ion-scroll scrollY="true">
-                            <ion-item *ngFor="let produit of produits">
+                        <ion-scroll *ngIf="panier != null" scrollY="true">
+                            <ion-item *ngFor="let produit of panier">
                                 <ion-avatar item-start>
                                   <img src="../../assets/imgs/coca.png"/>
                                 </ion-avatar>
@@ -61,6 +74,10 @@
                                 <ion-note item-end><ion-icon name="close"></ion-icon></ion-note>
                             </ion-item>
                         </ion-scroll>
+
+                        <p class="text-center" *ngIf="panier == null">
+                            Le panier est vide
+                        </p>
                 </ion-list>
                 </ion-card-content>
                 <button ion-button color="warning" (click)="commander()"> Valider ma commande</button>
