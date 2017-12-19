@@ -4,27 +4,48 @@ page-commande {
         text-align: center;
         height: 300px;
     }
-    
+    #img-plats {
+        background: url('../../assets/imgs/plats.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #img-boissons {
+        background: url('../../assets/imgs/boissons.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .card-title {
         position: absolute;
         top: 36%;
-        font-size: 2.0em;
+        font-size: 3.0em;
         width: 100%;
+        color: white;
+        text-shadow: black 2px 4px 5px;
+        text-transform: uppercase;
     }
     
     .card-subtitle {
-        font-size: 1.0em;
+        font-size: 2.0em;
         position: absolute;
         top: 52%;
         width: 100%;
+        color: white;
+        text-shadow: black 2px 4px 5px;
+        text-transform: uppercase;
     }
     button.choix{
         width: 100%;
         background: white;
     }
+    .card-header-md {
+        font-size: 2.6rem;
+    }
     .card-header-md + .card-content-md, .card-md .item + .card-content-md {
         height: 60%;
         padding: 0px !important;
+    }
+    .card-md p {
+        font-size: 1.6rem;
     }
     .card-md ion-list {
         height: 100%;

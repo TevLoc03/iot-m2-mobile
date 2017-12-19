@@ -9,16 +9,18 @@
       <ion-content padding>
             <ion-grid>
                 <ion-row>
-                    <ion-col *ngFor="let plat of plats" class="plat-col" col-4>
-                        <button (click)="ajoutPlat(plat.title)">
-                            <ion-card>
-                                <img src="../../assets/imgs/wooper.png"/>
-                                <ion-card-content padding>
-                                    <ion-card-title>{{plat.title}} <strong>9.80 €</strong></ion-card-title>
-                                </ion-card-content>
-                            </ion-card>
-                        </button>
-                    </ion-col>
+                    <span *ngFor="let plat of plats">
+                        <ion-col *ngIf="plat.is_plat == 1" class="plat-col" col-4>
+                            <button (click)="ajoutPlat(plat.titre, plat.prix, plat.image, plat.id)">
+                                <ion-card>
+                                    <img src="http://smartorder.jeremielbaz.fr{{plat.image}}" width="300px" height="300px"/>
+                                    <ion-card-content padding>
+                                        <ion-card-title>{{plat.titre}} <strong>{{plat.prix}} €</strong></ion-card-title>
+                                    </ion-card-content>
+                                </ion-card>
+                            </button>
+                        </ion-col>
+                    </span>
                 </ion-row>
             </ion-grid>
       </ion-content>

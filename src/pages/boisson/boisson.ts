@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import {ApiServiceProvider} from '../../providers/api-service/api-service';
 import 'rxjs/add/operator/share';
+import { Storage } from '@ionic/storage';
+import { CommandePage } from '../commande/commande';
 
 @Component({
   selector: 'page-boisson',
@@ -13,45 +15,73 @@ import 'rxjs/add/operator/share';
 export class BoissonPage {
 
   public boissons: any[];
+  produits: any[];
+
+  constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
+
+  }
   
-    constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController) {
-  
-    }
+  ionViewDidEnter(){
     
-    ionViewDidEnter(){
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      // Utilisation des headers
-      
-      let seq = this.apiService.get('posts', null, options).share();
-      
-      seq
-        .map(res => res.json())
-        .subscribe(res => {
-            // Retour JSON/XML de l'API
-            this.boissons = res;
-            console.log(res);
-          }, err => {
-            console.error('ERROR', err);
-          });
-      return seq;
-    }
-  
-    ajoutBoisson() {
-      let alert = this.alertCtrl.create({
-        title: 'Boisson ajouté',
-        subTitle: 'Continuer votre commande',
-        buttons: [
-          {
-            text: 'Oui'
-          },
-          {
-            text: 'Revenir accueil'
+    let seq = this.apiService.get('4/products', null, null).share();
+    
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+          // Retour JSON/XML de l'API
+          this.boissons = res;
+          console.log(res);
+        }, err => {
+          console.error('ERROR', err);
+        });
+    return seq;
+  }
+
+  ajoutBoisson(title, price, img, id) {
+
+    this.storage.get('panier').then((data) => {
+      this.produits = data;
+      console.log(data);
+    });
+
+    this.storage.get('panier').then((data) => {
+      if(data != null){
+        data.push({
+          id: id,
+          title: title,
+          price: price,
+          img: img
+        });
+        this.storage.set('panier', data);
+      }
+      else {
+        let array = [];
+        array.push({
+          id: id,
+          title: title,
+          price: price,
+          img: img
+        });
+        this.storage.set('panier', array);
+      }
+    });
+
+    let alert = this.alertCtrl.create({
+      title: 'Boisson ajouté',
+      subTitle: 'Continuer votre commande',
+      buttons: [
+        {
+          text: 'Oui'
+        },
+        {
+          text: 'Revenir accueil',
+        handler: () => {
+          this.navCtrl.push(CommandePage);
           }
-        ]
-      });
-      alert.present();
-    }
+        }
+      ]
+    });
+    alert.present();
+  }
 
 }

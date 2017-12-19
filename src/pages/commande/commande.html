@@ -13,9 +13,9 @@
       <ion-row>
         <ion-col col-9>
           <button class="choix" (click)="plat()">
-              <ion-card>
+              <ion-card id="img-plats">
                   <div class="card-title">Plats</div>
-                  <div class="card-subtitle">Choissisez parmis une multitudes de plats</div>
+                  <div class="card-subtitle">On a pas fini de vous couver</div>
                 </ion-card>
           </button>
         </ion-col>
@@ -52,7 +52,7 @@
       <ion-row>
         <ion-col col-9>
             <button class="choix" (click)="boisson()">
-              <ion-card>
+              <ion-card id="img-boissons">
                 <div class="card-title">Boissons</div>
                 <div class="card-subtitle">Pour étancher votre soif</div>
               </ion-card>
@@ -68,10 +68,9 @@
                         <ion-scroll *ngIf="panier != null" scrollY="true">
                             <ion-item *ngFor="let produit of panier">
                                 <ion-avatar item-start>
-                                  <img src="../../assets/imgs/coca.png"/>
+                                  <img src="http://smartorder.jeremielbaz.fr{{produit.img}}"/>
                                 </ion-avatar>
-                                <h2>{{produit.title}} 9.80€</h2>
-                                <ion-note item-end><ion-icon name="close"></ion-icon></ion-note>
+                                <h2>{{produit.title}} {{produit.price}}€</h2>
                             </ion-item>
                         </ion-scroll>
 

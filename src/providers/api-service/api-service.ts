@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 /*
   Generated class for the ApiServiceProvider provider.
@@ -12,16 +12,19 @@ import 'rxjs/add/operator/map';
 export class ApiServiceProvider {
 
   public data;
-  url: string = 'https://jsonplaceholder.typicode.com';
+	url: string = 'http://smartorder.jeremielbaz.fr/api';
 
   constructor(public http: Http) {
     console.log('Hello ApiServiceProvider Provider');
   }
 
   get(endpoint: string, params?: any, options?: RequestOptions) {
-		if (!options) {
-			options = new RequestOptions();
-		}
+		
+		options = new RequestOptions();
+		options.headers = new Headers();
+
+		options.headers.append('Content-Type', 'application/json');
+    options.headers.append('Authorization', 'Bearer smartorder_token');
 
 		// Support des paramËtres GET
 		if (params) {
@@ -36,5 +39,16 @@ export class ApiServiceProvider {
 		return this.http.get(this.url + '/' + endpoint, options);
   }
   
+	post(endpoint: string, valPost?: any, options?: RequestOptions) {
+		
+		options = new RequestOptions();
+		options.headers = new Headers();
+
+		options.headers.append('Content-Type', 'application/json');
+		options.headers.append('Authorization', 'Bearer smartorder_token');
+
+		return this.http.post(this.url + '/' + endpoint, valPost, options);
+	}
+
 
 }

@@ -1,4 +1,7 @@
 page-boisson {
+    ion-card img {
+        width: 368px;
+    }
     .boisson-col:nth-child(even) {
         button, .card-md {
             box-shadow: none;

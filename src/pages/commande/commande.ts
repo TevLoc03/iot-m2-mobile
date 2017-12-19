@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-import { Http, Headers, RequestOptions } from '@angular/http';
+//import { Http, Headers, RequestOptions } from '@angular/http';
 import {ApiServiceProvider} from '../../providers/api-service/api-service';
 import 'rxjs/add/operator/share';
 import { InscriptionPage } from '../inscription/inscription';
@@ -18,9 +18,8 @@ export class CommandePage {
 
   public panier: any[];
   public clients: any[];
-  public 
   
-    constructor(public http: Http, public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
+    constructor( public apiService: ApiServiceProvider, public navCtrl: NavController, public alertCtrl: AlertController, public storage: Storage) {
   
     }
     

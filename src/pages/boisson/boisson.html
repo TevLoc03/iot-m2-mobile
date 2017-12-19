@@ -9,16 +9,18 @@
   <ion-content padding>
         <ion-grid>
             <ion-row>
-                <ion-col *ngFor="let boisson of boissons" class="boisson-col" col-4>
-                    <button (click)="ajoutBoisson()">
-                        <ion-card>
-                            <img src="../../assets/imgs/coca.png"/>
-                            <ion-card-content padding>
-                                <ion-card-title>{{boisson.title}} <strong>9.80 €</strong></ion-card-title>
-                            </ion-card-content>
-                        </ion-card>
-                    </button>
-                </ion-col>
+                <span *ngFor="let boisson of boissons">
+                    <ion-col *ngIf="boisson.is_plat == 0" class="boisson-col" col-4>
+                        <button (click)="ajoutPlat(boisson.titre, boisson.prix, boisson.image, boisson.id)">
+                            <ion-card>
+                                <img src="http://smartorder.jeremielbaz.fr{{boisson.image}}" width="300px" height="300px"/>
+                                <ion-card-content padding>
+                                    <ion-card-title>{{boisson.titre}} <strong>{{boisson.prix}} €</strong></ion-card-title>
+                                </ion-card-content>
+                            </ion-card>
+                        </button>
+                    </ion-col>
+                </span>
             </ion-row>
         </ion-grid>
   </ion-content>
