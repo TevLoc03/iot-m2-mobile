@@ -50,16 +50,9 @@ export class ApiServiceProvider {
 		return this.http.post(this.url + '/' + endpoint, valPost, options);
 	}
 
-	getArduino(endpoint: string, options?: RequestOptions) {
+	getArduino(endpoint: string) {
 		
-		options = new RequestOptions();
-		options.headers = new Headers();
-
-		options.headers.append('Content-Type', 'application/json');
-    options.headers.append('Authorization', 'Bearer smartorder_token');
-
-
-		return this.http.get('http://arduino.local/arduino/' + endpoint, options);
+		return this.http.get('http://arduino.local/arduino/' + endpoint);
   }
 
 }
