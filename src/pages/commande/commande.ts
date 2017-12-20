@@ -12,7 +12,8 @@ import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-commande',
-  templateUrl: 'commande.html'
+  templateUrl: 'commande.html',
+  providers: [ApiServiceProvider]
 })
 export class CommandePage {
 

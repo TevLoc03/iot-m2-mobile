@@ -44,7 +44,7 @@ export class InscriptionPage {
 
       let alert = this.alertCtrl.create({
         title: 'Erreur',
-        subTitle: 'Un problème est survenue, veuillez réessayer s\'il vous plat',
+        subTitle: 'Un problème est survenue, veuillez réessayer s\'il vous plait',
         buttons: ['OK']
       });
 

@@ -9,8 +9,8 @@
       <ion-content padding>
             <ion-grid>
                 <ion-row>
-                    <span *ngFor="let plat of plats">
-                        <ion-col *ngIf="plat.is_plat == 1" class="plat-col" col-4>
+                    <span class="plat-col" *ngFor="let plat of plats">
+                        <ion-col *ngIf="plat.is_plat == 1"  col-4>
                             <button (click)="ajoutPlat(plat.titre, plat.prix, plat.image, plat.id)">
                                 <ion-card>
                                     <img src="http://smartorder.jeremielbaz.fr{{plat.image}}" width="300px" height="300px"/>

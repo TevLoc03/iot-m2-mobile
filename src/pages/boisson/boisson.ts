@@ -48,9 +48,9 @@ export class BoissonPage {
       if(data != null){
         data.push({
           id: id,
-          title: title,
-          price: price,
-          img: img
+          titre: title,
+          prix: price,
+          image: img
         });
         this.storage.set('panier', data);
       }
@@ -58,9 +58,9 @@ export class BoissonPage {
         let array = [];
         array.push({
           id: id,
-          title: title,
-          price: price,
-          img: img
+          titre: title,
+          prix: price,
+          image: img
         });
         this.storage.set('panier', array);
       }

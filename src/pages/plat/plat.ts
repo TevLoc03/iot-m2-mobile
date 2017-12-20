@@ -50,9 +50,9 @@ export class PlatPage {
       if(data != null){
         data.push({
           id: id,
-          title: title,
-          price: price,
-          img: img
+          titre: title,
+          prix: price,
+          image: img
         });
         this.storage.set('panier', data);
       }
@@ -60,9 +60,9 @@ export class PlatPage {
         let array = [];
         array.push({
           id: id,
-          title: title,
-          price: price,
-          img: img
+          titre: title,
+          prix: price,
+          image: img
         });
         this.storage.set('panier', array);
       }

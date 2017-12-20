@@ -68,9 +68,9 @@
                         <ion-scroll *ngIf="panier != null" scrollY="true">
                             <ion-item *ngFor="let produit of panier">
                                 <ion-avatar item-start>
-                                  <img src="http://smartorder.jeremielbaz.fr{{produit.img}}"/>
+                                  <img src="http://smartorder.jeremielbaz.fr{{produit.image}}"/>
                                 </ion-avatar>
-                                <h2>{{produit.title}} {{produit.price}}€</h2>
+                                <h2>{{produit.titre}} {{produit.prix}}€</h2>
                             </ion-item>
                         </ion-scroll>
 
@@ -79,7 +79,8 @@
                         </p>
                 </ion-list>
                 </ion-card-content>
-                <button ion-button color="warning" (click)="commander()"> Valider ma commande</button>
+                <button ion-button color="warning" (click)="commander()" *ngIf="panier != null"> Valider ma commande</button>
+                <button ion-button color="warning" (click)="commander()" *ngIf="panier == null" disabled> Valider ma commande</button>
               </ion-card>
           </ion-col>
       </ion-row>
