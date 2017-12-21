@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 import {ApiServiceProvider} from '../../providers/api-service/api-service';
 import 'rxjs/add/operator/share';
+import { Http } from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { CommandePage } from '../commande/commande';
 
@@ -16,6 +17,7 @@ import { CommandePage } from '../commande/commande';
 
     public panier: any[];
     public uid: any;
+    public totalPanier: 0;
 
     constructor(public loadingCtrl: LoadingController, public apiService: ApiServiceProvider, public alertCtrl: AlertController, public navCtrl: NavController, public storage: Storage) {
       
@@ -24,14 +26,18 @@ import { CommandePage } from '../commande/commande';
     ionViewDidEnter(){
       
       this.storage.get('panier').then((val) => {
-        console.log('panier', val);
+        console.log('panier', val, this.totalPanier);
         this.panier = val;
-      });
+        this.totalPanier = 0;
 
+        this.panier.forEach(element => {
+          this.totalPanier = this.totalPanier+element.prix;
+        });
+
+      });
     } 
 
     payer() {
-
       var commande = [];
 
       let loader = this.loadingCtrl.create({
@@ -68,7 +74,8 @@ import { CommandePage } from '../commande/commande';
                   this.navCtrl.push(CommandePage);
                   let alert = this.alertCtrl.create({
                     title: 'Paiement accepté',
-                    subTitle: 'Merci pour votre commande !'
+                    subTitle: 'Merci pour votre commande !',
+                    buttons: [{text: 'Ok'}]
                     });
                   alert.present();
                   this.storage.remove('panier');
@@ -81,8 +88,9 @@ import { CommandePage } from '../commande/commande';
                   this.navCtrl.push(CommandePage);
                   let alert = this.alertCtrl.create({
                     title: 'Paiement accepté',
-                    subTitle: 'Merci pour votre commande !'
-                    });
+                    subTitle: 'Merci pour votre commande !',
+                    buttons: [{text: 'Ok'}]
+                  });
                   alert.present();
                   this.storage.remove('panier');
 
@@ -99,11 +107,7 @@ import { CommandePage } from '../commande/commande';
                   loader.dismiss();
                   let alert = this.alertCtrl.create({
                     title: 'Paiement refusé',
-                    buttons: [
-                      {
-                        text: 'Reessayez'
-                      }
-                    ]
+                    buttons: [ {text: 'Reessayez'}]
                   });
                   alert.present();
 
@@ -115,7 +119,14 @@ import { CommandePage } from '../commande/commande';
             });
 
           }, err => {
-            console.error('lecture arduino erreur', err);
+            console.error('lecture arduino erreur', JSON.stringify(err));
+
+            loader.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Problème d\'accès à l\’arduino',
+              buttons: [ {text: 'Reessayez'}]
+            });
+            alert.present();
 
           });
 
